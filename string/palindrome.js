@@ -11,4 +11,4 @@ function palindrome(values){
     return true
 }
 
-console.log(palindrome(['k','a','k']));
+console.log(palindrome('101'));
