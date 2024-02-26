@@ -37,37 +37,6 @@ class Stack{
         }
     }
 
-    minValue(){
-        if(this.isEmpty()){
-            return "Stack is empty"
-        }else{
-            let current = this.top
-            let min = current.value
-            while(current){
-                if(current.value < min){
-                    min = current.value
-                }
-                current = current.next
-            }
-            return min
-        }
-    }
-
-    midValue(){
-        if(this.isEmpty()){
-            return "stack is empty"
-        }else{
-            let slow = this.top
-            let fast = this.top
-            while(fast && fast.next){
-                slow = slow.next
-                fast = fast.next.next
-            }
-            return slow.value
-
-        }
-    }
-
     peek(){
         if(this.isEmpty()){
             return "Stack is empty"

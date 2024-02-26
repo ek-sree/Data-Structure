@@ -6,7 +6,7 @@ class hashTable{
 
     hash(key){
         let total = 0
-        for(let i=0; i<key.length; i++){
+        for(let i =0; i<key.length; i++){
             total += key.charCodeAt(i)
         }
         return total % this.size
@@ -18,7 +18,7 @@ class hashTable{
         if(!bucket){
             this.table[index] = [[key,value]]
         }else{
-            let sameKeyItem = bucket.find((item)=>item[0]==key)
+            let sameKeyItem = bucket.find((item)=>item[0]===key)
             if(sameKeyItem){
                 sameKeyItem[1] = value
             }else{
@@ -31,27 +31,39 @@ class hashTable{
         let index = this.hash(key)
         let bucket = this.table[index]
         if(bucket){
-            let sameKeyItem = bucket.find((item)=>item[0]==key)
+            let sameKeyItem = bucket.find((item)=>item[0]===key)
             if(sameKeyItem){
                 return sameKeyItem[1]
             }
         }
-        return undefined
     }
 
     remove(key){
         let index = this.hash(key)
         let bucket = this.table[index]
         if(bucket){
-            let sameKeyItem = bucket.find((item)=> item[0]==key)
+            let sameKeyItem = bucket.find((item)=>item[0]===key)
             if(sameKeyItem){
                 bucket.splice(bucket.indexOf(sameKeyItem),1)
             }
         }
     }
 
-    display(){
+    searchKey(value){
         for(let i=0; i<this.table.length; i++){
+            let bucket = this.table[i]
+            if(bucket){
+                for(let j=0; j<bucket.length; j++){
+                    if(bucket[j][1]==value){
+                        return bucket[j][0]
+                    }
+                }
+            }
+        }
+    }
+
+    display(){
+        for(let i =0; i<this.table.length; i++){
             if(this.table[i]){
                 console.log(i, this.table[i]);
             }
@@ -59,17 +71,19 @@ class hashTable{
     }
 }
 
-const table = new hashTable(40)
+const table = new hashTable(50)
 
-table.set('name',"sree")
-table.set("mane",'hari')
-table.set("age",21)
-table.set(0,'first')
-table.set(1,'god')
+table.set('name','sree')
+table.set('age',21)
+table.set('mane','hari')
+
 table.display()
 
-console.log(table.get('name'));
+console.log("get,,..:",table.get('name'));
 
-console.log("removing...");
-table.remove('name')
+table.remove('mane')
 table.display()
+
+console.log(table.search("age"));
+
+console.log(table.searchKey(21));

@@ -16,4 +16,5 @@ function quickSort(arr){
     return [...quickSort(left),pivot,...quickSort(right)]
 }
 
+
 console.log(quickSort([2,5,3,6,-1,0]));

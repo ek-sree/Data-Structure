@@ -29,28 +29,6 @@ class Stack{
         }
     }
 
-    minValue(){
-        if(this.isEmpty()){
-            return "stack is empty"
-        }else{
-            let min = this.items[0]
-            for(let i =0; i<this.items.length; i++){
-                if(this.items[i] < min){
-                    min = this.items[i]
-                }
-            }
-            return min
-        }
-    }
-
-    midValue(){
-        if(this.isEmpty()){
-            return "stack is empty"
-        }else{
-            let mid = Math.floor(this.items.length/2)
-            return this.items[mid]
-        }
-    }
 
     size(){
         return this.items.length
@@ -59,7 +37,7 @@ class Stack{
     clear(){
         this.items=[]
     }
-
+    
     display(){
         let result =''
         for(let i =this.items.length-1; i>=0; i--){
