@@ -129,7 +129,7 @@ class binarySearchTree{
         }else if(value > root.value){
             root.right = this.deleteNode(root.right, value)
         }else{
-            if(!root.left && root.right){
+            if(!root.left && !root.right){
                 return null
             }
             if(!root.left){
@@ -174,6 +174,43 @@ class binarySearchTree{
             return "There is no second smallest element"
         }
     }
+
+    height(node){
+        if(!node){
+            return 0
+        }else{
+            const leftHeight = this.height(node.left)
+            const rightHeight = this.height(node.right)
+            return Math.max(leftHeight, rightHeight)+1
+        }
+    }
+
+    isBst(root = this.root){
+        if(!root){
+            return true
+        }
+        if(root.left && this.max(root.left)>=root.value){
+            return false
+        }
+        if(root.right && this.min(root.right)<root.value){
+            return false
+        }if(!this.isBst(root.left) || !this.isBst(root.right)){
+            return false
+        }
+        return true
+    }
+
+    printLevel(node, level){
+        if(!node){
+            return
+        }
+        if(level ===1){
+            console.log(`${node.value}`);
+        }else if(level > 1){
+            this.printLevel(node.left, level-1)
+            this.printLevel(node.right, level-1)
+        }
+    }
     
 }
 
@@ -186,6 +223,7 @@ bst.insert(15)
 bst.insert(3)
 bst.insert(7)
 bst.insert(13)
+
 
 console.log(bst.search(bst.root, 10));
 console.log(bst.search(bst.root, 5));
@@ -221,4 +259,11 @@ bst.levelOrder()
 
 console.log(bst.secondLargest());
 console.log(bst.secondSmallest());
+
+console.log(bst.isBst());
+
+console.log(bst.height(bst.root));
+
+bst.printLevel(bst.root, 3)
+
 
